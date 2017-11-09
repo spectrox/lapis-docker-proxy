@@ -11,6 +11,8 @@ services:
       - ssh:/app/ssh/:rw
       - ./docker/nginx/lualib/:/usr/local/openresty/site/lualib/:rw
       - ./docker/nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:rw
+    links:
+      - redis
   ssh:
     image: maltyxx/sshd
     command: "user::1000"
@@ -18,6 +20,7 @@ services:
       - "2222:22"
     volumes:
       - ssh:/home/user/.ssh/:ro
+      - ./docker/sshd/sshd_config:/usr/local/etc/sshd/sshd_config:ro
   redis:
     image: redis
 
