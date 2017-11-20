@@ -9,7 +9,8 @@ services:
       - "443:443"
     volumes:
       - ssh:/app/ssh/:rw
-      - ./docker/nginx/lualib/:/usr/local/openresty/site/lualib/:rw
+      - ./public/:/app/public/:rw
+      - ./app/:/usr/local/openresty/site/lualib/:rw
       - ./docker/nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:rw
     links:
       - redis
