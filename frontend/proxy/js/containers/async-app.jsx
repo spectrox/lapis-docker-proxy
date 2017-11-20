@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {
     fetchLists
 } from 'proxy/js/actions';
+import Hosts from 'proxy/js/components/hosts';
 
 class AsyncApp extends Component {
     componentDidMount() {
@@ -16,11 +17,7 @@ class AsyncApp extends Component {
 
         return (
             <div className="container">
-                <div>
-                    <h3>Hosts</h3>
-                    {hosts.isFetching ? <p>Fetching...</p> : ''}
-                    {Object.keys(hosts.items).length === 0 ? <p>No results</p> : ''}
-                </div>
+                <Hosts hosts={hosts}/>
                 <div>
                     <h3>Ports</h3>
                     {ports.isFetching ? <p>Fetching...</p> : ''}

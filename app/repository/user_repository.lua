@@ -50,7 +50,7 @@ function UserRepository:get(login)
         ngx.log(ngx.NOTICE, "cannot check if user already exists, " .. err)
     end
 
-    if not res then
+    if not res or res == ngx.null then
         return nil
     end
 

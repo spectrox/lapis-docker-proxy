@@ -50,6 +50,8 @@ app:match("login", "/login", respond_to({
                 self.cookies.ukey = ukey
 
                 return { json = { code = 'OK', redirect_to = self:url_for('root') } }
+            else
+                return { json = { code = "ERROR", message = "Wrong username or password" } }
             end
         end
 

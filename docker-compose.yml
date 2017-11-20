@@ -24,6 +24,8 @@ services:
       - ./docker/sshd/sshd_config:/usr/local/etc/sshd/sshd_config:ro
   redis:
     image: redis
+    volumes:
+      - ./bin:/app/bin
 
 volumes:
   ssh:

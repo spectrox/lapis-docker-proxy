@@ -14,11 +14,11 @@ function auth.getUserByKey(ukey)
 
     local login, err = redis:get(key)
 
-    if err then
+    if err or not login then
         return nil
     end
 
-    if not login then
+    if login == ngx.null then
         return nil
     end
 
@@ -33,10 +33,9 @@ function auth.setUserKey(user)
 
     local redis = getRedisInstance()
 
-    local ok, err = redis:set(key, user:getLogin(), AUTH_TTL)
+    local ok, err = redis:setex(key, AUTH_TTL, user:getLogin())
 
     if err then
-        ngx.log(ngx.NOTICE, "cannot set user key for user " .. user:getLogin())
         return nil
     end
 
